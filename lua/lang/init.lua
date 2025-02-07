@@ -12,7 +12,7 @@ for _, v in ipairs(lang) do
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = v,
 		once = true,
-		callback = function(ev)
+		callback = function(_)
 			require("lang." .. v)
 		end
 	})

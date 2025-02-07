@@ -1,0 +1,7 @@
+-- local notify = vim.notify
+-- vim.notify = function(msg, ...)
+-- 	if msg:match("vim.lsp.buf_get_clients() is deprecated. Run \":checkhealth vim.deprecated\" for more infor") then
+-- 		return
+-- 	end
+-- 	notify(msg, ...)
+-- end

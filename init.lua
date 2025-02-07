@@ -1,5 +1,8 @@
-require("options")
+-- Load basic options and custom autocommand
+require("core")
+
+-- Bootstrap lazy.nvim and load plugins
 require("bootstrap")
-require("autocmd")
-require("keymap")
+
+-- Language specific settings
 require("lang")

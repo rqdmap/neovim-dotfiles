@@ -1,2 +1,2 @@
-vim.o.tw=80
-vim.o.formatoptions="tcqmMj"
+vim.o.tw            = 80
+vim.o.formatoptions = "tcqmMj"
