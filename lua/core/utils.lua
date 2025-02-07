@@ -118,4 +118,12 @@ utils.get_platform = function()
 	end
 end
 
+utils.is_linux = function()
+    return utils.get_platform() == "linux"
+end
+
+utils.is_mac = function()
+    return utils.get_platform() == "mac"
+end
+
 return utils

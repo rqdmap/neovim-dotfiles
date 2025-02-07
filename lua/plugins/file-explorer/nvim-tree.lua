@@ -11,7 +11,9 @@ return {
 		require("nvim-tree").setup{
 			sort_by	= "modification_time",
 			view = {
-				width = 35,
+				width = {
+					min = 35
+				}
 			},
 			filters = {
 				git_ignored = true,
@@ -50,7 +52,7 @@ return {
 				map('n', 'L',		api.tree.expand_all,		opts('Expand all'))
 				map('n', 'H',		api.tree.collapse_all,		opts('Collapse all'))
 				map('n', '<C-h>',	toggle_all_filter,			opts('Toggle filter'))
-			end
+			end,
 		}
 
 		vim.cmd([[nnoremap <silent> <Leader>f :NvimTreeToggle<CR>]])

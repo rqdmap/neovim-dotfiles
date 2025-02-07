@@ -100,7 +100,7 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-			lspconfig.clangd.setup {}
+			-- lspconfig.clangd.setup {}
 
 			lspconfig.cssls.setup {
 				capabilities = capabilities,
@@ -110,13 +110,11 @@ return {
 				capabilities = capabilities,
 			}
 
-			lspconfig.volar.setup{}
-
 			lspconfig.quick_lint_js.setup{}
 
 			-- To configure typescript language server,
 			-- add a tsconfig.json or jsconfig.json to the root of your project.
-			-- lspconfig.tsserver.setup{}
+			lspconfig.ts_ls.setup{}
 
 			lspconfig.jsonls.setup {
 				capabilities = capabilities,
@@ -124,9 +122,37 @@ return {
 
 			lspconfig.texlab.setup{}
 
-			-- IMPORTANT: If you want all the features jdtls has to offer,
-			-- **nvim-jdtls** is highly recommended.
-			lspconfig.jdtls.setup{}
+			local HOME = vim.fn.expand('$HOME')
+			lspconfig.jdtls.setup{
+				cmd = {
+					"jdtls",
+					"-configuration", HOME .. "/.cache/jdtls/config",
+					"--jvm-arg=-javaagent:" .. HOME .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+					"-data", HOME .. "/.cache/jdtls/workspace",
+				},
+				settings = {
+					java = {
+						format = {
+							settings = {
+								url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+								profile = "GoogleStyle"
+							}
+						},
+						-- configuration = {
+						-- 	-- 使 jdtls 了解你的 Maven 配置，
+						-- 	-- 这里指定 settings.xml 路径
+						-- 	updateBuildConfiguration = "interactive",
+						-- 	maven = {
+						-- 		userSettings = "/Users/rqdmap/Applications/apache-maven-3.9.7/conf/settings.xml"
+						-- 	}
+						-- },
+					}
+				}
+			}
+			-- lspconfig.java_language_server.setup{}
+
+            lspconfig.kotlin_language_server.setup{}
+
 
 			lspconfig.marksman.setup{}
 			-- require'lspconfig'.zk.setup{}  -- No single file support
@@ -159,28 +185,6 @@ return {
 		},
 		config = function()
 			require("lspsaga").setup({
-				finder = {
-					max_height = 0.5,
-					min_width = 30,
-					force_max_height = false,
-					keys = {
-						jump_to = 'p',
-						expand_or_jump = 'o', -- Do NOT execute
-						vsplit = 'v',
-						split = 's',
-						tabe = 't',
-						tabnew = 'r',
-						quit = { 'q', '<ESC>' },
-						close_in_preview = '<ESC>',
-					},
-				},
-				definition = {
-					edit = "<C-c>o", -- Do NOT execute
-					vsplit = "<C-c>v",
-					split = "<C-c>s",
-					tabe = "<C-c>t",
-					quit = "q",
-				},
 				code_action = {
 					num_shortcut = true,
 					show_server_name = true,
@@ -190,9 +194,41 @@ return {
 						exec = "<CR>",
 					},
 				},
+				-- definition = {
+				-- 	edit = "<C-c>o", -- Do NOT execute
+				-- 	vsplit = "<C-c>v",
+				-- 	split = "<C-c>s",
+				-- 	tabe = "<C-c>t",
+				-- 	quit = "q",
+				-- },
+				finder = {
+					max_height = 0.5,
+					min_width = 30,
+					force_max_height = false,
+					keys = {
+						toggle_or_open = {'o', '<CR>'},
+						vsplit = 'v',
+						split = 's',
+						tabe = 't',
+						tabnew = 'r',
+						quit = { 'q', '<ESC>' },
+						close_in_preview = '<ESC>',
+					},
+				},
+				callhierarchy = {
+					keys = {
+						edit = {'o', '<CR>'},
+						vsplit = 'v',
+						split = 's',
+						tabe = 't',
+						tabnew = 'r',
+						quit = { 'q', '<ESC>' },
+						close_in_preview = '<ESC>',
+					},
+				},
 				lightbulb = {
-					enable = true,
-					enable_in_insert = true,
+					enable = false,
+					enable_in_insert = false,
 					sign = false,
 					sign_priority = 40,
 					virtual_text = true,
@@ -220,17 +256,19 @@ return {
 				},
 				outline = {
 					win_position = "left",
-					-- win_width = 35,
-					auto_preview = true,
+					-- win_width = 50,
+					auto_preview = false,
 					detail = false,
 					auto_close = true,
 					close_after_jump = false,
-					layout = 'float',   -- or 'float'
+					layout = 'normal',   -- or 'float'
 					max_height = 0.5,	 -- height of outline float layout
 					left_width = 0.3,	 -- width of outline float layout left window
+					-- auto_resize = true,
 
 					keys = {
-						expand_or_jump = 'o',
+						jump = {'<CR>', 'o'},
+						-- expnd_or_jump = {'t'},
 						quit = "q",
 					},
 				},
@@ -251,22 +289,24 @@ return {
 				},
 			})
 			local keymap = vim.keymap.set
-			keymap("n", "<Leader>T", "<cmd>Lspsaga outline<CR>")
-			keymap("n", "<Leader>d", "<cmd>Lspsaga peek_definition<CR>")
-			keymap("n", "<Leader>D", "<cmd>Lspsaga lsp_finder<CR>")
+			-- Callhierarchy
+			keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+			keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+
+			-- Code Action
 			keymap("n", "<Leader>a", "<cmd>Lspsaga code_action<CR>")
+
+			-- -- Definition
+			-- keymap("n", "<Leader>d", "<cmd>Lspsaga peek_definition<CR>")
+			-- keymap("n", "<Leader>d", "<cmd>Lspsaga goto_type_definition<CR>")
+
+			-- Diagnostic
+			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 			keymap("n", "<Leader>ew", "<cmd>Lspsaga show_workspace_diagnostics<CR>")
 			keymap("n", "<Leader>eb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
 			keymap("n", "<Leader>ee", "<cmd>Lspsaga show_line_diagnostics<CR>")
 			keymap("n", "<Leader>e]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 			keymap("n", "<Leader>e[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-			keymap("n", "<Leader>S", "<cmd>Lspsaga term_toggle<CR>")
-			-- Many LSP not support yet?
-			keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-			keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-			-- keymap("n", "<Leader>h", "<cmd>Lspsaga hover_doc<CR>")
-
-			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 			vim.keymap.set('n', '<Leader>et', function()
 				if(vim.diagnostic.is_disabled()) then
 					vim.diagnostic.enable()
@@ -274,6 +314,18 @@ return {
 					vim.diagnostic.disable()
 				end
 			end)
+
+			-- Finder
+			keymap("n", "<Leader>d", "<cmd>Lspsaga finder<CR>")
+
+			-- Float Terminal
+			keymap("n", "<Leader>S", "<cmd>Lspsaga term_toggle<CR>")
+
+			-- Hover
+			keymap("n", "<Leader>h", "<cmd>Lspsaga hover_doc<CR>")
+
+			-- Outline
+			-- keymap("n", "<Leader>t", "<cmd>Lspsaga outline<CR>")
 		end,
 	},
 }

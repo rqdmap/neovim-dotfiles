@@ -10,7 +10,7 @@ return {
 		'hrsh7th/nvim-cmp',
 		dependencies = "onsails/lspkind.nvim",
 		config = function()
-			local utils = require("utils")
+			local utils = require("core.utils")
 			local words_before_cursor = utils.words_before_cursor
 
 			local luasnip = require("luasnip")
@@ -98,7 +98,7 @@ return {
 			-- 由于nvim-cmp带有的模糊查找功能, 一些*子序列*的优先级可能会超过*前缀*序列
 			-- 因而使用 KMP 检查 ** 最长公共前后缀的长度** 以此排序
 			local cmp_prefix = function(entry1, entry2)
-				local foo = require("utils").longest_common_prefix_suffix
+				local foo = require("core.utils").longest_common_prefix_suffix
 				-- local foo = require("utils").prefix_cnt
 				local words = words_before_cursor()
 				if words == nil then return end

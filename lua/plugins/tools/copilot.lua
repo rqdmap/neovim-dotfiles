@@ -1,11 +1,5 @@
--- Todo
 return {
 	"zbirenbaum/copilot.lua",
-	-- event = "InsertEnter",
-	enabled = function()
-		local hostname = vim.api.nvim_call_function('hostname', {})
-		return hostname == 'ArchLinux'
-	end,
 	config = function()
 		require('copilot').setup({
 			panel = {
@@ -52,3 +46,4 @@ return {
 		})
 	end
 }
+
