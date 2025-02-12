@@ -1,8 +1,8 @@
 return {
-	"dfendr/clipboard-image.nvim",
-	config = function ()
+    "dfendr/clipboard-image.nvim",
+    config = function ()
         local path = vim.fn.expand('%:p:h')
-		require'clipboard-image'.setup({
+        require'clipboard-image'.setup({
             default = {
                 img_dir = path .. "/images",
                 img_dir_txt = "./images",
@@ -19,7 +19,7 @@ return {
 </div>
 ]]
             }
-		})
+        })
         vim.keymap.set("n", "<Leader>p", "<cmd>PasteImg<CR>")
-	end
+    end
 }

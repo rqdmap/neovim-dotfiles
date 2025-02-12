@@ -5,11 +5,11 @@ return {
         enabled = require("core.utils").is_linux(),
     },
 
-	-- {
-	-- 	'ivanesmantovich/xkbswitch.nvim',
-	-- 	init = function ()
-	-- 		require('xkbswitch').setup()
-	-- 	end
-	-- },
+    -- {
+    --     'ivanesmantovich/xkbswitch.nvim',
+    --     init = function ()
+    --         require('xkbswitch').setup()
+    --     end
+    -- },
 }
 

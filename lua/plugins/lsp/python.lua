@@ -1,4 +1,4 @@
 return {
-	"Yggdroot/indentLine",
-	ft = "python"
+    "Yggdroot/indentLine",
+    ft = "python"
 }
