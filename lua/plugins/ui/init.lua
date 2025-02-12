@@ -2,6 +2,7 @@ return {
     -- Gruvbox 配色
 	{
 		"ellisonleao/gruvbox.nvim",
+		commit = "a7cacf59418a6fe52da3d022bfd76a8caf34dc8d",
 		init = function()
 			require("gruvbox").setup({
 				-- Markdown 换行的列表颜色

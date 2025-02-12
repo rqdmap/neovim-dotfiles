@@ -67,7 +67,7 @@ return {
 					pylsp = {
 						plugins = {
 							pycodestyle = {
-								ignore = {'E731', 'E302'},
+								ignore = {'E731', 'E302', 'E501'},
 								maxLineLength = 120
 							}
 						}
@@ -173,6 +173,8 @@ return {
 				end
 			})
 			lspconfig.gopls.setup{}
+
+			lspconfig.yamlls.setup{}
 		end
 	},
 	{

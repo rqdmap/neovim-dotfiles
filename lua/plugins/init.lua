@@ -1,5 +1,5 @@
 return {
-	'folke/lazy.nvim',
+    'folke/lazy.nvim',
 
     require("plugins.ui"),
 
