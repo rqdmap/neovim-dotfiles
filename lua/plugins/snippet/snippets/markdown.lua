@@ -168,9 +168,9 @@ return {
     }),
 
     s("info", fmt([==[
-        {{% info %}}
+        {{% cblock "info" %}}
         <>
-        {{% /info %}}
+        {{% /cblock %}}
     ]==], {
         i(1, "Title of the box is the first line."),
     }, {
@@ -178,9 +178,9 @@ return {
     })),
 
     s("warn", fmt([==[
-        {{% warn %}}
+        {{% cblock "warn" %}}
         <>
-        {{% /warn %}}
+        {{% /cblock %}}
     ]==], {
         i(1, "Title of the box is the first line."),
     }, {
@@ -188,9 +188,19 @@ return {
     })),
 
     s("error", fmt([==[
-        {{% error %}}
+        {{% cblock "error" %}}
         <>
-        {{% /error %}}
+        {{% /cblock %}}
+    ]==], {
+        i(1, "Title of the box is the first line."),
+    }, {
+        delimiters = "<>"
+    })),
+
+    s("gpt", fmt([==[
+        {{% cblock "gpt" %}}
+        <>
+        {{% /cblock %}}
     ]==], {
         i(1, "Title of the box is the first line."),
     }, {
