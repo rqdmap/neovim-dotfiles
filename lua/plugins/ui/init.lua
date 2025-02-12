@@ -25,7 +25,9 @@ return {
     -- 代码颜色展示
     {
         'norcalli/nvim-colorizer.lua',
-        opts = {}
+        config = function ()
+            require('colorizer').setup()
+        end
     },
 
 
