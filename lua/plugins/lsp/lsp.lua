@@ -33,8 +33,17 @@ return {
             -- Default configuration is GOOD
             require("mason").setup()
             require("mason-lspconfig").setup({
-                ensure_installed = {},
-                automatic_installation = false
+                -- ensure_installed = {
+                --     "lua_ls",
+                --     "bashls",
+                --     "marksman",
+                --     "pyright",
+                --     "pylsp",
+                --     "yamlls"
+                -- },
+
+                -- true: All servers set up via lspconfig are automatically installed
+                automatic_installation = true
             })
 
             -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
