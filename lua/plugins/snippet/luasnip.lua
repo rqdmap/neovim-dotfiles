@@ -49,7 +49,7 @@ return {
 
             -- Load Lua snippets
             require("luasnip.loaders.from_lua").load({
-                paths = "./lua/plugins/snippets"
+                paths = "./lua/plugins/snippet/snippets"
             })
         end
     },
