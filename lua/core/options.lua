@@ -48,7 +48,7 @@ local options = {
     -- File
         encoding                   =    "utf-8",
         -- fileencoding            =    "utf-8",
-        fileencodings              =    "ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1",
+        fileencodings              =    "ucs-bom,utf-8,gbk,big5,gb18030,latin1",
 
     -- Misc
         updatetime                 =    300,                -- 更新时间
