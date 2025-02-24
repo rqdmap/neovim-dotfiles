@@ -212,6 +212,7 @@ return {
                         maxwidth = 50,
                         ellipsis_char = '...',
                         elide_long_lines = true,
+                        symbol_map = { Codeium = "", }
                     }),
                 },
 
