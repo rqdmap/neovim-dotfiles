@@ -13,11 +13,11 @@ return {
             markdown = {
                 affix = [[
 
-<div align="center">
-<img src=%s style="width:100%%; max-width:600px;">
-<div class="img-caption"></div>
-</div>
+{{< img-with-caption src="%s" max-width="600px" >}}
+
+{{< /img-with-caption >}}
 ]]
+
             }
         })
         vim.keymap.set("n", "<Leader>p", "<cmd>PasteImg<CR>")

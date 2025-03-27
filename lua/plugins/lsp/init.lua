@@ -10,4 +10,5 @@ return {
     require("plugins.lsp.markdown"),
     require("plugins.lsp.python"),
     require("plugins.lsp.rust"),
+    require("plugins.lsp.typst"),
 }

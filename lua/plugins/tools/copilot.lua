@@ -1,6 +1,6 @@
 return {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     config = function()
         require('copilot').setup({
             panel = {
@@ -33,7 +33,7 @@ return {
             },
             filetypes = {
                 yaml = false,
-                markdown = false,
+                markdown = true,
                 help = false,
                 gitcommit = false,
                 gitrebase = false,

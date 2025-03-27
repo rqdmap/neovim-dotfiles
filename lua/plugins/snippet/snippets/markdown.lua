@@ -48,29 +48,51 @@ return {
     -- }),
 
 
-    s("fig", fmt([==[
-        <div align="center">
-        <img src=./images/{} style="width:{}%; max-width:{}px;">
-        <div class="img-caption">{}</div>
-        </div>
+    -- s("fig", fmt([==[
+    --     <div align="center">
+    --     <img src=./images/{} style="width:{}%; max-width:{}px;">
+    --     <div class="img-caption">{}</div>
+    --     </div>
+    --
+    -- ]==], {
+    --     i(1), i(2, "100"), i(3, "600"), i(4, "")
+    -- }, {
+    --     delimiters = "{}"
+    -- })),
+    --
+    -- s("svg", fmt([==[
+    --     <div align="center">
+    --     <object data=./images/{} type="image/svg+xml" style="width:{}%; max-width:{}px;"></object>
+    --     <div class="img-caption">{}</div>
+    --     </div>
+    --
+    -- ]==], {
+    --     i(1), i(2, "100"), i(3, "600"), i(4, "")
+    -- }, {
+    --     delimiters = "{}"
+    -- })),
 
+
+    s("img-with-caption", fmt([==[
+        {{% img-with-caption src="./images/<>" max-width="600px" %}}
+        <>
+        {{% /img-with-caption %}}
     ]==], {
-        i(1), i(2, "100"), i(3, "600"), i(4, "")
+        i(1), i(2, "")
     }, {
-        delimiters = "{}"
+        delimiters = "<>"
     })),
 
-    s("svg", fmt([==[
-        <div align="center">
-        <object data=./images/{} type="image/svg+xml" style="width:{}%; max-width:{}px;"></object>
-        <div class="img-caption">{}</div>
-        </div>
-
+    s("svg-with-caption", fmt([==[
+        {{% svg-with-caption src="./images/<>" max-width="600px" %}}
+        <>
+        {{% /svg-with-caption %}}
     ]==], {
-        i(1), i(2, "100"), i(3, "600"), i(4, "")
+        i(1), i(2, "")
     }, {
-        delimiters = "{}"
+        delimiters = "<>"
     })),
+
 
     s({
         trig = "more",
@@ -80,7 +102,7 @@ return {
     },
     {
         t({[[<!--more-->]], ""})
-    }),    
+    }),
 
     s({
         trig = "`",

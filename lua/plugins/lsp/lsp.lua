@@ -178,12 +178,22 @@ return {
                     }
                 },
                 on_attach = function(client, bufnr)
-                    vim.lsp.inlay_hint.enable(bufnr)
+                    vim.lsp.inlay_hint.enable(true)
                 end
             })
             lspconfig.gopls.setup{}
 
             lspconfig.yamlls.setup{}
+
+            lspconfig.taplo.setup{}
+
+            lspconfig.tinymist.setup{
+                settings = {
+                    formatterMode = "typstyle",
+                    exportPdf = "onType",
+                    semanticTokens = "disable"
+                }
+            }
         end
     },
     {

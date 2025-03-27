@@ -131,7 +131,7 @@ return {
     {
         t({"\\begin{figure}[htb]", "\t"}),
         t({"\\centering", "\t"}),
-        t({"\\includegraphics[width=0.8\\linewidth]{./images/"}), i(1), t({"}", "\t"}),
+        t({"\\includegraphics[scale=1]{./images/"}), i(1), t({"}", "\t"}),
         t("\\caption{"), i(2), t({"}", "\t"}),
         t("\\label{Fig:"),
         f(function(args, snip)
@@ -142,35 +142,52 @@ return {
 
     s({
         trig = "subfig",
-        name = "Beamer Sub Figure",
-        dscr = [[ 
-\begin{figure}[htbp]
-    \centering
-    \subcaptionbox{N-Gram词频\label{Fig:ngramConfusion}}  
-    {\includegraphics[width=.48\linewidth]{./Figure/ngramResult.png}} 
-    \subcaptionbox{TF-IDF特征\label{Fig:tfidfConfusion}}
-    {\includegraphics[width=.48\linewidth]{./Figure/tfidfResult.png}}
-    \caption{XGBoost分类结果}\label{Fig:XGBoostConfusion}
-\end{figure}
+        name = "Minipage Subfigure",
+        dscr = [[
+    \begin{figure}[!h]
+        \centering
+        \subfigure[子图1]{
+            \begin{minipage}[b]{0.45\textwidth}
+                \includegraphics[width=1\linewidth]{pic/logo-buaa.eps}\vspace{85pt}
+            \end{minipage}
+            \label{}
+        }
+        \subfigure[子图2]{
+            \begin{minipage}[b]{0.45\textwidth}
+                \includegraphics[width=1\linewidth]{pic/buaa-mark.jpg}
+            \end{minipage}
+            \label{}
+        }
+        \caption{测试图片}
+    \end{figure}
         ]]
     },
     {
-        t({"\\begin{figure}[htbp]", "\t"}),
+        t({"\\begin{figure}[!h]", "\t"}),
         t({"\\centering", "\t"}),
-        t({"\\subcaptionbox{"}), i(1, "caption"),
-        f(function(args, snip)
-            return "\\label{Fig:" .. args[1][1]:gsub("%.%a+$", "") .. "}}"
+        t({"\\subfigure["}), i(1, "子图1"), t({"]{", "\t\t"}),
+        t({"\\begin{minipage}[b]{0.45\\textwidth}", "\t\t\t"}),
+        t({"\\centering", "\t\t\t"}),
+        t({"\\includegraphics[scale=1]{./images/"}), i(2),
+        t({"}\\vspace{0pt}", "\t\t"}),
+        t({"\\end{minipage}", "\t\t"}),
+        t({"\\label{fig:"}), f(function(args, snip)
+            return args[1][1]:gsub("%.%a+$", "")
         end, {2}),
-        t({"", "\t{\\includegraphics[width=.48\\linewidth]{./images/"}), i(2),
-        t({"}}", "\t"}),
-        t({"\\subcaptionbox{"}), i(3, "caption"),
-        f(function(args, snip)
-            return "\\label{Fig:" .. args[1][1]:gsub("%.%a+$", "") .. "}}"
+        t({"}", "\t}"}), t({"", "\t"}),
+        t({"\\subfigure["}), i(3, "子图2"), t({"]{", "\t\t"}),
+        t({"\\begin{minipage}[b]{0.45\\textwidth}", "\t\t\t"}),
+        t({"\\centering", "\t\t\t"}),
+        t({"\\includegraphics[scale=1]{./images/"}), i(4),
+        t({"}\\vspace{0pt}", "\t\t"}),
+        t({"\\end{minipage}", "\t\t"}),
+        t({"\\label{fig:"}), f(function(args, snip)
+            return args[1][1]:gsub("%.%a+$", "")
         end, {4}),
-        t({"", "\t{\\includegraphics[width=.48\\linewidth]{./images/"}), i(4),
-        t({"}}", "\t"}),
-        t({"\\caption{"}), i(5, "caption"), t({"}", "\t"}),
-        t({"\\label{Fig:"}), i(6, "Label"), t({"}", ""}), t({"\\end{figure}", ""}),
+        t({"}", "\t}"}), t({"", "\t"}),
+        t({"\\caption{"}), i(5, "图片标题"), t({"}", "\t"}),
+        t({"\\label{fig:"}), i(6), t({"}", ""}),
+        t({"\\end{figure}", ""}),
     }),
 
     s({
@@ -180,14 +197,14 @@ return {
 \begin{scriptsize}
 \begin{table}[htpb]
     \centering
-    \begin{tabular}{m{2cm}<{\centering}m{2cm}<{\centering}}
-        \specialrule{0.05em}{3pt}{3pt}
-        \specialrule{0.02em}{2pt}{3pt}
-        \specialrule{0.00em}{1pt}{1pt}
-        \specialrule{0.05em}{2pt}{3pt}
-    \end{tabular}
     \caption{$0}
     \label{tab:$1}
+    \begin{tabular}{m{4cm}<{\centering}m{4cm}<{\centering}}
+        \specialrule{0.08em}{4pt}{4pt}
+        \specialrule{0.06em}{3pt}{4pt}
+        \specialrule{0.00em}{1pt}{1pt}
+        \specialrule{0.08em}{2pt}{3pt}
+    \end{tabular}
 \end{table}
 \end{scriptsize}
         ]]
@@ -195,14 +212,14 @@ return {
     {
         t({"\\begin{scriptsize} \\begin{table}[htpb]", "\t"}),
         t({"\\centering", "\t"}),
-        t({"\\begin{tabular}{m{2cm}<{\\centering}m{2cm}<{\\centering}}", "\t\t"}),
-        t({"\\specialrule{0.05em}{3pt}{3pt}", "\t\t"}),
-        t({"\\specialrule{0.02em}{2pt}{3pt}", "\t\t"}),
-        t({"\\specialrule{0.00em}{1pt}{1pt}", "\t\t"}),
-        t({"\\specialrule{0.05em}{2pt}{3pt}", "\t"}),
-        t({"\\end{tabular}", "\t"}),
         t({"\\caption{"}), i(1), t({"}", "\t"}),
-        t({"\\label{Tab:"}), i(2), t({"}", ""}),
+        t({"\\label{Tab:"}), i(2), t({"}", "\t"}),
+        t({"\\begin{tabular}{m{4cm}<{\\centering}m{4cm}<{\\centering}}", "\t\t"}),
+        t({"\\specialrule{0.08em}{4pt}{4pt}", "\t\t"}),
+        t({"\\specialrule{0.06em}{3pt}{4pt}", "\t\t"}),
+        t({"\\specialrule{0.00em}{1pt}{1pt}", "\t\t"}),
+        t({"\\specialrule{0.08em}{2pt}{3pt}", "\t"}),
+        t({"\\end{tabular}", ""}),
         t({"\\end{table} \\end{scriptsize}", ""})
     }),
 

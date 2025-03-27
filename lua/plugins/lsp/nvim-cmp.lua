@@ -198,6 +198,7 @@ return {
                 },
 
                 completion = {
+                    keyword_pattern = [[\%([^0-9]\|$\)\k\+]],  -- 排除数字开头的补全
                     -- Describes: Set trigger for autocomplete, not used so far.
                     -- Params: cmp.TriggerEvent[] | false
                     -- autocomplete = false
