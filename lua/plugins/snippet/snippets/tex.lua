@@ -200,10 +200,9 @@ return {
     \caption{$0}
     \label{tab:$1}
     \begin{tabular}{m{4cm}<{\centering}m{4cm}<{\centering}}
-        \specialrule{0.08em}{4pt}{4pt}
-        \specialrule{0.06em}{3pt}{4pt}
-        \specialrule{0.00em}{1pt}{1pt}
-        \specialrule{0.08em}{2pt}{3pt}
+        \toprule
+        \midrule
+        \bottomrule
     \end{tabular}
 \end{table}
 \end{scriptsize}
@@ -215,10 +214,9 @@ return {
         t({"\\caption{"}), i(1), t({"}", "\t"}),
         t({"\\label{Tab:"}), i(2), t({"}", "\t"}),
         t({"\\begin{tabular}{m{4cm}<{\\centering}m{4cm}<{\\centering}}", "\t\t"}),
-        t({"\\specialrule{0.08em}{4pt}{4pt}", "\t\t"}),
-        t({"\\specialrule{0.06em}{3pt}{4pt}", "\t\t"}),
-        t({"\\specialrule{0.00em}{1pt}{1pt}", "\t\t"}),
-        t({"\\specialrule{0.08em}{2pt}{3pt}", "\t"}),
+        t({"\\toprule", "\t\t"}),
+        t({"\\midrule", "\t\t"}),
+        t({"\\bottomrule", "\t\t"}),
         t({"\\end{tabular}", ""}),
         t({"\\end{table} \\end{scriptsize}", ""})
     }),
