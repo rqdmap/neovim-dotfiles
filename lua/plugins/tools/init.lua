@@ -7,5 +7,5 @@ return {
     require("plugins.tools.codeium"),
     require("plugins.tools.git"),
     require("plugins.tools.vim-table-mode"),
-    "ludovicchabant/vim-gutentags",
+    -- "ludovicchabant/vim-gutentags",
 }
