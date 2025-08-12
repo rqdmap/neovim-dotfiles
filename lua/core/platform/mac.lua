@@ -21,10 +21,8 @@ local function auto_switch_input_method()
         {
             pattern = "*",
             callback = function()
-                -- vim.schedule(function()
-                    saved_layout = get_current_layout()
-                    os.execute('macism ' .. us_layout_name);
-                -- end)
+                saved_layout = get_current_layout()
+                vim.fn.system('~/Applications/input-source-switcher/build/issw ' .. us_layout_name)
             end
         }
     )
@@ -34,11 +32,9 @@ local function auto_switch_input_method()
         {
             pattern = "*",
             callback = function()
-                -- vim.schedule(function()
                 if(saved_layout ~= us_layout_name) then
-                    os.execute('macism ' .. saved_layout);
+                    vim.fn.system('~/Applications/input-source-switcher/build/issw ' .. saved_layout)
                 end
-                -- end)
             end
         }
     )

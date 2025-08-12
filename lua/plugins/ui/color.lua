@@ -29,9 +29,4 @@ return {
             require('colorizer').setup()
         end
     },
-
-
-    require("plugins.ui.lualine"),
-    require("plugins.ui.bufferline"),
-    require("plugins.ui.nvim-web-devicons"),
 }
