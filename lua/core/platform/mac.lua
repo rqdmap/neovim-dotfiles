@@ -1,5 +1,5 @@
 -- MacOS 输入法切换, 需要安装 macism
--- xkbswitch 无法正确切换鼠须管, issue: https://github.com/rime/squirrel/issues/402
+-- issw 与 xkbswitch 均无法正确切换鼠须管, issue: https://github.com/rime/squirrel/issues/402
 local function auto_switch_input_method()
     local get_current_layout = function()
         local file = io.popen('macism')
@@ -17,24 +17,28 @@ local function auto_switch_input_method()
     local us_layout_name = "com.apple.keylayout.ABC"
 
     vim.api.nvim_create_autocmd(
-        {'InsertLeave', 'FocusLost'},
+        {'InsertLeave'},
         {
             pattern = "*",
             callback = function()
-                saved_layout = get_current_layout()
-                vim.fn.system('~/Applications/input-source-switcher/build/issw ' .. us_layout_name)
+                -- vim.schedule(function()
+                    saved_layout = get_current_layout()
+                    os.execute('macism ' .. us_layout_name);
+                -- end)
             end
         }
     )
 
     vim.api.nvim_create_autocmd(
-        {'InsertEnter', 'FocusGained'},
+        {'InsertEnter'},
         {
             pattern = "*",
             callback = function()
+                -- vim.schedule(function()
                 if(saved_layout ~= us_layout_name) then
-                    vim.fn.system('~/Applications/input-source-switcher/build/issw ' .. saved_layout)
+                    os.execute('macism ' .. saved_layout);
                 end
+                -- end)
             end
         }
     )

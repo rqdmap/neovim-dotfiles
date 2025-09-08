@@ -85,20 +85,20 @@ return {
             }
 
             -- 支持 call graph; pylyzer 好像不支持
-            lspconfig.pyright.setup{
-                settings = {
-                    python = {
-                        -- [<Language Server Settings>](https://microsoft.github.io/pyright/#/settings)
-                        analysis = {
-                            autoSearchPaths = true,
-                            diagnosticMode = "workspace",
-                            useLibraryCodeForTypes = false,
-                            typeCheckingMode = "off",
-                            -- typeCheckingMode = "strict",
-                        }
-                    }
-                }
-            }
+            -- lspconfig.pyright.setup{
+            --     settings = {
+            --         python = {
+            --             -- [<Language Server Settings>](https://microsoft.github.io/pyright/#/settings)
+            --             analysis = {
+            --                 autoSearchPaths = true,
+            --                 diagnosticMode = "workspace",
+            --                 useLibraryCodeForTypes = false,
+            --                 typeCheckingMode = "off",
+            --                 -- typeCheckingMode = "strict",
+            --             }
+            --         }
+            --     }
+            -- }
 
 
             lspconfig.bashls.setup{}
@@ -181,7 +181,6 @@ return {
                     vim.lsp.inlay_hint.enable(true)
                 end
             })
-            lspconfig.gopls.setup{}
 
             lspconfig.yamlls.setup{}
 
@@ -276,8 +275,8 @@ return {
                     },
                 },
                 outline = {
-                    win_position = "left",
-                    -- win_width = 50,
+                    win_position = "right",
+                    win_width = 120,
                     auto_preview = false,
                     detail = false,
                     auto_close = true,

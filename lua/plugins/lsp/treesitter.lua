@@ -4,6 +4,11 @@ return {
         "nvim-treesitter/nvim-treesitter-refactor",
         config = function()
             require'nvim-treesitter.configs'.setup {
+                  -- 代码块语法高亮
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = { "markdown" },
+                },
                 refactor = {
                     highlight_definitions = {
                         enable = true,
