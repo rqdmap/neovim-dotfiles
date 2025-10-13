@@ -219,8 +219,8 @@ return {
         delimiters = "<>"
     })),
 
-    s("gpt", fmt([==[
-        {{% cblock "gpt" %}}
+    s("ai", fmt([==[
+        {{% cblock "ai" %}}
         <>
         {{% /cblock %}}
     ]==], {

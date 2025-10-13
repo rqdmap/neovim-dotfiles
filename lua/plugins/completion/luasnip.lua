@@ -12,7 +12,7 @@ return {
             -- Load snipmate snippets
             require("luasnip.loaders.from_snipmate").lazy_load({
                 paths = {
-                    "./lua/plugins/snippet/snippets",
+                    "./lua/plugins/completion/snippets",
                 }
             })
 
@@ -49,7 +49,7 @@ return {
 
             -- Load Lua snippets
             require("luasnip.loaders.from_lua").load({
-                paths = "./lua/plugins/snippet/snippets"
+                paths = "./lua/plugins/completion/snippets"
             })
         end
     },
