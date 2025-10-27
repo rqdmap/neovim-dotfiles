@@ -74,13 +74,13 @@ return {
 
 
     s("img-with-caption", fmt([==[
-        {{% img-with-caption src="./images/<>" max-width="600px" %}}
-        <>
-        {{% /img-with-caption %}}
+        {{< img-with-caption src="./images/{}" max-width="600px" >}}
+        {}
+        {{< /img-with-caption >}}
     ]==], {
         i(1), i(2, "")
     }, {
-        delimiters = "<>"
+        delimiters = "{}"
     })),
 
     s("svg-with-caption", fmt([==[
@@ -89,6 +89,24 @@ return {
         {{% /svg-with-caption %}}
     ]==], {
         i(1), i(2, "")
+    }, {
+        delimiters = "<>"
+    })),
+
+    s("masonry", fmt([==[
+        {{% masonry columns="<>" gap="20px" %}}
+        {{% masonry-item
+            image="<>"
+            title="<>"
+            date="<>"
+            tags="<>"
+            max-width="600px"
+        %}}
+        <>
+        {{% /masonry-item %}}
+        {{% /masonry %}}
+    ]==], {
+        i(1, "1"), i(2), i(3), i(4), i(5), i(6, "图片描述"),
     }, {
         delimiters = "<>"
     })),
