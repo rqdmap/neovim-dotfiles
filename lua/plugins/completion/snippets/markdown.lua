@@ -246,4 +246,14 @@ return {
     }, {
         delimiters = "<>"
     })),
+
+    s("sidenote", fmt([==[
+        {{% sidenote %}}
+        <>
+        {{% /sidenote %}}
+    ]==], {
+        i(1),
+    }, {
+        delimiters = "<>"
+    })),
 }

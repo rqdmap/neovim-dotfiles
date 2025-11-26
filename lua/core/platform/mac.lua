@@ -17,7 +17,7 @@ local function auto_switch_input_method()
     local us_layout_name = "com.apple.keylayout.ABC"
 
     vim.api.nvim_create_autocmd(
-        {'InsertLeave'},
+        {'InsertLeave', 'FocusGained'},
         {
             pattern = "*",
             callback = function()
