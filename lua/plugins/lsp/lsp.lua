@@ -48,19 +48,17 @@ return {
 
             -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-            local lspconfig = require('lspconfig')
-
-            lspconfig.lua_ls.setup{}
+            vim.lsp.config('lua_ls', {})
 
             -- https://www.reddit.com/r/neovim/comments/xt4f7g/how_to_set_ccls_offset_encoding_in_astrovim/
             -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-            lspconfig.ccls.setup {
+            vim.lsp.config('ccls', {
                 init_options = {
                     cache = {
                         directory = ".ccls-cache";
                     };
                 },
-            }
+            })
             local notify = vim.notify
             vim.notify = function(msg, ...)
                 if msg:match("warning: multiple different client offset_encodings") then
@@ -69,9 +67,9 @@ return {
                 notify(msg, ...)
             end
 
-            -- lspconfig.pylyzer.setup{}
+            -- vim.lsp.config('pylyzer', {})
             -- [<python-lsp-server/CONFIGURATION.md at develop · python-lsp/python-lsp-server>](https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md)
-            lspconfig.pylsp.setup{
+            vim.lsp.config('pylsp', {
                 settings = {
                     pylsp = {
                         plugins = {
@@ -82,10 +80,10 @@ return {
                         }
                     }
                 }
-            }
+            })
 
             -- 支持 call graph; pylyzer 好像不支持
-            -- lspconfig.pyright.setup{
+            -- vim.lsp.config('pyright', {
             --     settings = {
             --         python = {
             --             -- [<Language Server Settings>](https://microsoft.github.io/pyright/#/settings)
@@ -98,41 +96,41 @@ return {
             --             }
             --         }
             --     }
-            -- }
+            -- })
 
 
-            lspconfig.bashls.setup{}
+            vim.lsp.config('bashls', {})
 
-            lspconfig.dotls.setup{}
+            vim.lsp.config('dotls', {})
 
             --Enable (broadcasting) snippet capability for completion
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-            -- lspconfig.clangd.setup {}
+            -- vim.lsp.config('clangd', {})
 
-            lspconfig.cssls.setup {
+            vim.lsp.config('cssls', {
                 capabilities = capabilities,
-            }
+            })
 
-            lspconfig.html.setup {
+            vim.lsp.config('html', {
                 capabilities = capabilities,
-            }
+            })
 
-            lspconfig.quick_lint_js.setup{}
+            vim.lsp.config('quick_lint_js', {})
 
             -- To configure typescript language server,
             -- add a tsconfig.json or jsconfig.json to the root of your project.
-            lspconfig.ts_ls.setup{}
+            vim.lsp.config('ts_ls', {})
 
-            lspconfig.jsonls.setup {
+            vim.lsp.config('jsonls', {
                 capabilities = capabilities,
-            }
+            })
 
-            lspconfig.texlab.setup{}
+            vim.lsp.config('texlab', {})
 
             local HOME = vim.fn.expand('$HOME')
-            lspconfig.jdtls.setup{
+            vim.lsp.config('jdtls', {
                 cmd = {
                     "jdtls",
                     "-configuration", HOME .. "/.cache/jdtls/config",
@@ -157,16 +155,16 @@ return {
                         -- },
                     }
                 }
-            }
-            -- lspconfig.java_language_server.setup{}
+            })
+            -- vim.lsp.config('java_language_server', {})
 
-            lspconfig.kotlin_language_server.setup{}
+            vim.lsp.config('kotlin_language_server', {})
 
 
-            lspconfig.marksman.setup{}
-            -- require'lspconfig'.zk.setup{}  -- No single file support
+            vim.lsp.config('marksman', {})
+            -- vim.lsp.config('zk', {})  -- No single file support
 
-            lspconfig.rust_analyzer.setup({
+            vim.lsp.config('rust_analyzer', {
                 settings = {
                     ['rust-analyzer'] = {
                         inlayHints = {
@@ -182,17 +180,17 @@ return {
                 end
             })
 
-            lspconfig.yamlls.setup{}
+            vim.lsp.config('yamlls', {})
 
-            lspconfig.taplo.setup{}
+            vim.lsp.config('taplo', {})
 
-            lspconfig.tinymist.setup{
+            vim.lsp.config('tinymist', {
                 settings = {
                     formatterMode = "typstyle",
                     exportPdf = "onType",
                     semanticTokens = "disable"
                 }
-            }
+            })
         end
     },
     {
