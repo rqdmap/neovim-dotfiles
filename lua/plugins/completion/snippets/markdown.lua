@@ -74,9 +74,9 @@ return {
 
 
     s("img-with-caption", fmt([==[
-        {{< img-with-caption src="./images/{}" max-width="600px" >}}
+        {{{{< img-with-caption src="./images/{}" max-width="600px" >}}}}
         {}
-        {{< /img-with-caption >}}
+        {{{{< /img-with-caption >}}}}
     ]==], {
         i(1), i(2, "")
     }, {
