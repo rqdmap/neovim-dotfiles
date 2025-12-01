@@ -40,3 +40,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         end
     end
 })
+
+-- Chezmoi Template
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "*.tmpl",
+    callback = function()
+        local filepath = vim.fn.expand("%:p")
+        if filepath:match("chezmoi") then
+            vim.bo.filetype = "go"
+        end
+    end,
+})
+
