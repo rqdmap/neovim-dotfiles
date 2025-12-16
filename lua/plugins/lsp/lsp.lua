@@ -129,33 +129,11 @@ return {
 
             vim.lsp.config('texlab', {})
 
-            local HOME = vim.fn.expand('$HOME')
-            vim.lsp.config('jdtls', {
-                cmd = {
-                    "jdtls",
-                    "-configuration", HOME .. "/.cache/jdtls/config",
-                    "--jvm-arg=-javaagent:" .. HOME .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
-                    "-data", HOME .. "/.cache/jdtls/workspace",
-                },
-                settings = {
-                    java = {
-                        format = {
-                            settings = {
-                                url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
-                                profile = "GoogleStyle"
-                            }
-                        },
-                        -- configuration = {
-                        --     -- 使 jdtls 了解你的 Maven 配置，
-                        --     -- 这里指定 settings.xml 路径
-                        --     updateBuildConfiguration = "interactive",
-                        --     maven = {
-                        --         userSettings = "/Users/rqdmap/Applications/apache-maven-3.9.7/conf/settings.xml"
-                        --     }
-                        -- },
-                    }
-                }
-            })
+            -- Java LSP is handled by nvim-jdtls plugin (see plugins/lsp/java.lua)
+            -- local HOME = vim.fn.expand('$HOME')
+            -- vim.lsp.config('jdtls', {
+            --     ...
+            -- })
             -- vim.lsp.config('java_language_server', {})
 
             vim.lsp.config('kotlin_language_server', {})
