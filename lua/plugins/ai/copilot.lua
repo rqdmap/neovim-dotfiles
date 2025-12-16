@@ -1,6 +1,9 @@
 return {
     "zbirenbaum/copilot.lua",
     enabled = true,
+    cond = function()
+        return vim.bo.filetype ~= "markdown"
+    end,
     config = function()
         require('copilot').setup({
             panel = {
