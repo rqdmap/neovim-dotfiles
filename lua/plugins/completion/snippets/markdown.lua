@@ -94,21 +94,21 @@ return {
     })),
 
     s("masonry", fmt([==[
-        {{% masonry columns="<>" gap="20px" %}}
-        {{% masonry-item
-            image="<>"
-            title="<>"
-            date="<>"
-            tags="<>"
+        {{{{< masonry columns="{}" gap="20px" >}}}}
+        {{{{< masonry-item
+            image="{}"
+            title="{}"
+            date="{}"
+            tags="{}"
             max-width="600px"
-        %}}
-        <>
-        {{% /masonry-item %}}
-        {{% /masonry %}}
+        >}}}}
+        {}
+        {{{{< /masonry-item >}}}}
+        {{{{< /masonry >}}}}
     ]==], {
-        i(1, "1"), i(2), i(3), i(4), i(5), i(6, "图片描述"),
+        i(1, "1"), i(2), i(3), i(4), i(5), i(6),
     }, {
-        delimiters = "<>"
+        delimiters = "{}"
     })),
 
 
